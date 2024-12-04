@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NGO Donations</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css">
+  <script src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js" nomodule></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+
+  <style>
+    ion-button {
+      --background: #721311;
+      --color: white;
+      margin-top: 20px;
+    }
+    ion-item {
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-weight: bold;
+    }
+    .highlight-text span {
+      font-weight: bold;
+    }
+    .highlight-text .angat {
+      color: #5EBEC4;
+    }
+    .highlight-text .buhay {
+      color: #FF1EBB;
+    }
+    .image-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .image-container img {
+      width: 100%;
+      max-width: 350px;
+      height: auto;
+      border-radius: 8px;
+    }
+    p {
+      text-align: justify;
+      font-weight: normal; 
+    }
+    .map {
+      margin-top: 30px;
+      justify-items: center;
+      text-align: center;
+    }
+    ion-button.back {
+      --background: none;
+      --color: black; 
+    }
+    .maps-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+    iframe {
+      width: 70%;
+      height: 400px; 
+      border: none;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button class="back" href="categories.html">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>NGO Donation</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+    <div class="highlight-text">
+      <h2>Empower Change with <span class="angat">Angat</span> <span class="buhay">Buhay</span></h2>
+    </div>
+
+    <div class="image-container">
+      <img src="https://cdn.slidesharecdn.com/ss_thumbnails/angatbuhayposteventreportfinal-161027065249-thumbnail.jpg?width=640&height=640&fit=bounds" alt="Angat Buhay Image">
+    </div>
+
+    <div class="info-text">
+      <p>Angat Pinas, Inc., commonly known as Angat Buhay, is a Filipino non-profit organization dedicated to empowering communities of active citizens. They mobilize the largest volunteer network to implement Bayanihan programs that foster collaboration and support among Filipinos.</p>
+      <p>You can be a part of this movement! By donating to Angat Buhay, you help create meaningful change in the lives of many. Your support fuels initiatives that uplift communities and inspire collective action.</p> 
+      <p>Join us in making a difference—donate today and help empower your fellow Filipinos!</p>   
+    </div>
+
+    <div class="map">
+      <h5>Want to donate books or other items that you no longer use? Please visit one of our designated drop-off locations where you can leave them.</h5>
+      <h5><i>Details of the nearest options are provided below:</i></h5>
+    </div>
+
+    <div class="maps-container">
+      <iframe
+        src="https://www.google.com/maps/d/embed?mid=1tiw_bZFGsc9Vyx1jKQ-lsEumNF-gEwY&hl=en&ehbc=2E312F" >
+      </iframe>
+    </div>
+
+  </ion-content>
+</ion-app>
+</body>
+</html>

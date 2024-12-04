@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categories</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css">
+  <script src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js" nomodule></script>
+  <style>
+    ion-button {
+      margin: 12px 0;
+      --background: #731414;
+      --color: white;
+    }
+    .category-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    .category-buttons ion-button {
+      width: 48%;
+    }
+    .content-section {
+      margin-bottom: 20px;
+    }
+    .content-section p {
+      margin: 8px 0;
+      margin-bottom: 20px;
+      color: #6D0505;
+      text-align: justify;
+    }
+    .content-section span {
+      color: #731414;
+    }
+    .content-section h1 {
+      font-weight: bold;
+      font-size: 2.5rem;
+    }
+    h5 {
+      color: black;
+      font-size: 1.2rem;
+      margin-top: 30px;
+      text-align: center;
+    }
+    .donate-now {
+      text-decoration: underline;
+      background: none;
+      padding: 0;
+      font-size: 1.2rem;
+      color: #731414;
+      text-align: center;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <ion-app>
+    <ion-content class="ion-padding">
+      <div class="content-section">
+        <h1>Welcome to <span>Dagyaw!</span></h1>
+        <br>
+        <p>Ever wondered how you can make a difference? “Dagyaw Filipino” means “help” or “to assist,” and this app is designed just for you! Here, you'll find a wealth of information about various charitable causes and relief efforts that support Filipinos in need.</p>
+        <p>As you explore, you'll discover detailed stories about the calamities and crises that have impacted communities across the Philippines. The best part? You can choose how much you want to donate—there are no limits!</p>
+        <p>Remember, your contributions are all about compassion and choice. Donations here are meant to be heartfelt and voluntary, not a matter of obligation. Let's make a difference together!</p>
+      </div>
+
+      <h5>Find out more about each donation drive</h5>
+
+      <div class="category-buttons">
+        <ion-button expand="block" href="ngo.html">NGO</ion-button>
+        <ion-button expand="block" href="government.html">Government</ion-button>
+      </div>
+      <div class="category-buttons">
+        <ion-button expand="block" href="charities.html">Charity</ion-button>
+        <ion-button expand="block" href="international.html">From International</ion-button>
+      </div>
+
+      <h5>Support a cause with your contribution! <button class="donate-now" onclick="window.location.href='personal-details-form.html'">Donate Now</button></h5>
+    </ion-content>
+  </ion-app>
+</body>
+</html>

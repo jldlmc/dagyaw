@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Methods</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css">
+  <script src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js" nomodule></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+    .background {
+      background-color: #721311;
+      height: 100%;
+      padding: 40px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .header-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 900px;
+    }
+    h1 {
+      color: white;
+      font-size: 2.3rem;
+      font-weight: bold;
+      margin: 0;
+    }
+    h2 {
+      color: white;
+      font-size: 1rem;
+      margin-left: 100px;
+      margin-top: -10px;
+    }
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      --background: none;
+      --color: white;
+      --box-shadow: none;
+     --border: none;
+    }
+    .form-container {
+      background-color: white;
+      width: 100%;
+      max-width: 600px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 30px;
+      min-height: 400px; /* Adjusted height */
+      overflow-y: auto;
+    }
+    ion-button {
+      --background: #721311;
+      --color: white;
+      margin-top: 20px;
+    }
+    ion-item {
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="background">
+    <div class="header-container">
+      
+      <ion-button class="back-button" onclick="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+      <h1>DAGYAW</h1>
+      <h2><i>Filipino</i></h2>
+    </div>
+
+    <div class="form-container">
+      <p>Select a payment method to proceed with your donation:</p>
+      <ion-button expand="block" onclick="navigateTo('gcash-donation.html')">Proceed with GCash</ion-button>
+      <ion-button expand="block" onclick="navigateTo('bank-transfer.html')">Proceed with Bank Transfer</ion-button>
+      <ion-button expand="block" onclick="navigateTo('credit-debit.html')">Proceed with Credit/Debit</ion-button>
+    </div>
+  </div>
+
+  <script>
+    function goBack() {
+      window.location.href = 'personal-details-form.html';  
+    }
+    function navigateTo(page) {
+      window.location.href = page; 
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank Transfer</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css">
+  <script src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js" nomodule></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      background-color: #721311;
+      height: 100%;
+      padding: 40px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    h1 {
+      color: white;
+      font-size: 2.3rem;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    h2 {
+      color: white;
+      font-size: 1rem;
+      margin-top: -10px;
+      margin-left: 100px;
+    }
+
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      --background: none;
+      --color: white;
+      --box-shadow: none;
+  --border: none;
+    }
+
+    .donation-amount {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 20px;
+      color: white;
+      text-align: center;
+    }
+
+    ion-item {
+      margin-bottom: 15px;
+    }
+
+    ion-button {
+      --background: #721311;
+      --color: white;
+      margin-top: 20px;
+    }
+
+    
+    
+
+    .form-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .highlight-text {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Back Button -->
+    <ion-button class="back-button" onclick="goBack()">
+      <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+    </ion-button>
+    
+    <!-- Heading -->
+    <h1>DAGYAW</h1>
+    <h2><i>Filipino</i></h2>
+
+    <!-- Donation Amount Display -->
+    <div class="highlight-text">
+      <p>You are donating a total amount of:</p>
+      <p class="donation-amount">₱<span id="donationAmount"></span></p>
+    </div>
+
+    <!-- Form Container -->
+    <div class="form-container">
+      <!-- Bank Transfer Form -->
+      <ion-item>
+        <ion-label position="stacked">Account Name</ion-label>
+        <ion-input type="text" id="accountName" placeholder="Enter account name" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Account Number</ion-label>
+        <ion-input type="number" id="accountNumber" placeholder="Enter account number" required></ion-input>
+      </ion-item>
+
+      <!-- Submit Button -->
+      <ion-button expand="block" id="submitButton">Continue</ion-button>
+    </div>
+
+    <script>
+      // Fetch the donation amount from localStorage
+      const donationAmount = localStorage.getItem('donationAmount');
+      document.getElementById('donationAmount').textContent = donationAmount || '0.00'; // Default to 0.00 if no amount found
+
+      // Get elements for form inputs and button
+      const accountNameInput = document.getElementById('accountName');
+      const accountNumberInput = document.getElementById('accountNumber');
+      const submitButton = document.getElementById('submitButton');
+
+      // Enable/Disable Submit Button based on form input validation
+      function enableSubmitButton() {
+        const isFormValid = accountNameInput.value && accountNumberInput.value;
+        submitButton.disabled = !isFormValid;
+      }
+
+      // Add event listeners for input validation
+      accountNameInput.addEventListener('input', enableSubmitButton);
+      accountNumberInput.addEventListener('input', enableSubmitButton);
+
+      // Handle form submission
+      submitButton.addEventListener('click', function() {
+        // In a real-world scenario, you would integrate the bank transfer details with a payment processing system.
+
+        // Display a payment confirmation alert
+        alert(`Your donation of ₱${donationAmount} has been submitted successfully! Thank you for your contribution!`);
+
+        // Redirect to a thank you page (you can customize this page as needed)
+        window.location.href = 'ngo-thank-you.html';
+      });
+
+      // Initialize button state
+      enableSubmitButton();
+
+      // Back button function to go back to personal-details.html
+      function goBack() {
+        window.location.href = 'personal-details-form.html';  // Always navigate to personal-details.html
+      }
+    </script>
+  </div>
+</body>
+</html>

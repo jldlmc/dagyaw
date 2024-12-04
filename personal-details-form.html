@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Details</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css">
+  <style>
+    .background {
+      background-color: #721311;
+      height: 100%;
+      padding: 40px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .header-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 900px;
+      position: relative;
+    }
+    h1 {
+      color: white;
+      font-size: 2.3rem;
+      font-weight: bold;
+      margin: 0;
+    }
+    h2 {
+      color: white;
+      font-size: 1rem;
+      margin-top: -10px;
+      margin-left: 90px;
+    }
+    #back-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
+    #back-button ion-icon {
+      color: white;
+      font-size: 24px;
+    }
+    ion-content {
+      --background: #721311;
+      padding: 20px;
+    }
+    ion-card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+    }
+    ion-label {
+      color: #721311;
+    }
+    ion-button {
+      --background: white;
+      --border-color: #721311;
+      --border-width: 2px;
+      --color: #721311;
+      width: 80%;
+      margin: 20px auto 0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <ion-app>
+    <div class="background">
+      <div class="header-container">
+        <button id="back-button" onclick="goBack()">
+          <ion-icon name="arrow-back"></ion-icon>
+        </button>
+        <h1>DAGYAW</h1>
+        <h2><i>Filipino</i></h2>
+      </div>
+      <ion-content>
+        <ion-card>
+          <form action="submit_donation.php" method="POST">
+            <ion-item>
+              <ion-label position="stacked">Full Name</ion-label>
+              <ion-input type="text" name="fullName" placeholder="Enter your full name" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Mobile Number</ion-label>
+              <ion-input type="tel" name="mobileNumber" placeholder="Enter your mobile number" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Email Address</ion-label>
+              <ion-input type="email" name="email" placeholder="Enter your email address" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Donate To</ion-label>
+              <ion-select name="category" placeholder="Choose Category" required>
+                <ion-select-option value="Angat Buhay">Angat Buhay</ion-select-option>
+                <ion-select-option value="DSWD">DSWD</ion-select-option>
+                <ion-select-option value="Kanlungan ni Maria">Kanlungan ni Maria</ion-select-option>
+                <ion-select-option value="UNICEF Philippines">UNICEF Philippines</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Payment Method</ion-label>
+              <ion-select name="paymentMethod" placeholder="Choose Payment Method" required>
+                <ion-select-option value="Bank Transfer">Bank Transfer</ion-select-option>
+                <ion-select-option value="GCash">GCash</ion-select-option>
+                <ion-select-option value="Credit/Debit Card">Credit/Debit Card</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Total Amount to Donate</ion-label>
+              <ion-input type="number" name="amountDonated" placeholder="Enter amount" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Gender</ion-label>
+              <ion-select name="sex" placeholder="Select Gender" required>
+                <ion-select-option value="male">Male</ion-select-option>
+                <ion-select-option value="female">Female</ion-select-option>
+                <ion-select-option value="other">Non-Binary</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Message (Optional)</ion-label>
+              <ion-textarea name="message" placeholder="Enter a message (optional)"></ion-textarea>
+            </ion-item>
+            <ion-button expand="block" type="submit">Continue</ion-button>
+          </form>
+        </ion-card>
+      </ion-content>
+    </div>
+  </ion-app>
+  <script>
+    function goBack() {
+      window.location.href = 'categories.html';
+    }
+  </script>
+</body>
+</html>

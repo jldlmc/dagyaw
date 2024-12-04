@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      background-color: #f4f4f4;
+      color: #721311; 
+    }
+    .content {
+      margin: 0 auto;
+      padding: 30px;
+      max-width: 1200px; 
+      background-color: #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
+      border-radius: 10px; 
+    }
+    .section-title {
+      font-size: 2rem;
+      color: #721311;
+      font-weight: bold;
+      text-align: center; 
+      margin-bottom: 30px;
+    }
+    .data-container {
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      flex-wrap: wrap; 
+      margin-bottom: 40px; 
+    }
+    ion-card {
+      width: 300px; 
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      margin: 10px;
+    }
+    ion-card-header {
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+    ion-card-title {
+      font-size: 1.1rem;
+      color: #721311;
+      text-align: center;
+      font-weight: bold;
+    }
+    ion-card-content {
+      text-align: center;
+      color: #721311;
+    }
+    .charts-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 40px; 
+      flex-wrap: wrap; 
+      margin-top: 20px; 
+    }
+    .chart-container {
+      width: 350px; 
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      margin: 10px;
+    }
+    .chart-label {
+      font-size: 1rem;
+      color: #721311;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    @media screen and (max-width: 768px) {
+      .data-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    ion-card {
+      width: 90%; 
+    }
+    .charts-wrapper {
+      flex-direction: column;
+      align-items: center;
+    }
+    .chart-container {
+      width: 90%;
+    }
+    .chart-label {
+      font-size: 1rem;
+      color: #721311;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .chart-container canvas {
+      width: 100%; 
+      height: calc(100% - 40px); 
+      max-width: 280px; 
+      max-height: 280px; 
+    }
+  </style>
+</head>
+<body>
+  <body>
+    <ion-app>
+      <ion-menu side="start" menu-id="main-menu" content-id="main-content">
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Admin Sidebar</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content style="padding: 16px;">
+          <ion-list>
+            <ion-item button>
+              <ion-label>Dashboard</ion-label>
+              <ion-router-link href="admin_dashboard.html"></ion-router-link>
+            </ion-item>
+            <ion-item button>
+              <ion-label>Reports</ion-label>
+              <ion-router-link href="reports.html"></ion-router-link>
+            </ion-item>
+            <ion-item button>
+              <ion-label>Settings</ion-label>
+              <ion-router-link href="settings.html"></ion-router-link>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-menu>
+  
+      <ion-content id="main-content">
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-menu-button menu-id="main-menu"></ion-menu-button>
+            </ion-buttons>
+            <ion-title>Admin Dashboard</ion-title>
+          </ion-toolbar>
+        </ion-header>
+  
+        <div class="content">
+          <div class="section-title">Admin Dashboard</div>
+  
+          <div class="data-container">
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>Total Users Who Donated</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <p id="total-users">Loading...</p>
+              </ion-card-content>
+            </ion-card>
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>Total Money Donated</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <p id="total-money">Loading...</p>
+              </ion-card-content>
+            </ion-card>
+          </div>
+  
+          <div class="charts-wrapper">
+            <div class="chart-container">
+              <div class="chart-label">Total Money Per Category</div>
+              <canvas id="donationChart"></canvas>
+            </div>
+            <div class="chart-container">
+              <div class="chart-label">Total Users Per Category</div>
+              <canvas id="userChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </ion-content>
+    </ion-app>
+
+  <script>
+    fetch('fetch_dashboard_data.php')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('total-users').textContent = data.total_users;
+        document.getElementById('total-money').textContent = data.total_money ? data.total_money : '0';
+  
+        const donationData = {
+          labels: ['Angat Buhay', 'DSWD', 'Kanlungan ni Maria', 'UNICEF Philippines'],
+          datasets: [{
+            data: [
+              data.total_money_AngatBuhay ? data.total_money_AngatBuhay : 0,
+              data.total_money_DSWD ? data.total_money_DSWD : 0,
+              data.total_money_Kanlungan ? data.total_money_Kanlungan : 0,
+              data.total_money_UNICEF ? data.total_money_UNICEF : 0
+            ],
+            backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56', '#4bc0c0'],
+            hoverBackgroundColor: ['#ff6384', '#36a2eb', '#ffcd56', '#4bc0c0'],
+          }]
+        };
+  
+        const userData = {
+          labels: ['Angat Buhay', 'DSWD', 'Kanlungan ni Maria', 'UNICEF Philippines'],
+          datasets: [{
+            label: 'Total Users',
+            data: [
+              data.total_users_AngatBuhay ? data.total_users_AngatBuhay : 0,
+              data.total_users_DSWD ? data.total_users_DSWD : 0,
+              data.total_users_Kanlungan ? data.total_users_Kanlungan : 0,
+              data.total_users_UNICEF ? data.total_users_UNICEF : 0
+            ],
+            backgroundColor: '#36a2eb',
+            borderColor: '#36a2eb',
+            borderWidth: 1
+          }]
+        };
+  
+        const donationConfig = {
+          type: 'pie',
+          data: donationData,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'top',
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(tooltipItem) {
+                    return tooltipItem.label + ': PHP ' + tooltipItem.raw;
+                  }
+                }
+              }
+            }
+          }
+        };
+  
+        const userConfig = {
+          type: 'bar',
+          data: userData,
+          options: {
+            responsive: true,
+            maintainAspectRatio: false, 
+            plugins: {
+              legend: {
+                display: false, 
+              },
+              tooltip: {
+                callbacks: {
+                  label: function (tooltipItem) {
+                    return tooltipItem.label + ': ' + tooltipItem.raw + ' Users';
+                  },
+                },
+                backgroundColor: '#333', 
+                titleColor: '#fff',
+                bodyColor: '#fff',
+                borderRadius: 4,
+              },
+            },
+            scales: {
+              x: {
+                grid: {
+                  display: false, 
+                },
+                ticks: {
+                  color: '#721311', 
+                  font: {
+                    size: 12,
+                  },
+                },
+              },
+              y: {
+                grid: {
+                  color: '#e0e0e0', 
+                  drawBorder: false, 
+                },
+                ticks: {
+                  beginAtZero: true,
+                  stepSize: Math.ceil(Math.max(...userData.datasets[0].data) / 5), 
+                  color: '#721311',
+                  font: {
+                    size: 12,
+                  },
+                },
+              },
+            },
+            layout: {
+              padding: {
+                top: 10, 
+                bottom: 10, 
+              },
+            },
+          },
+        };
+
+
+  
+        const ctxDonation = document.getElementById('donationChart').getContext('2d');
+        new Chart(ctxDonation, donationConfig);
+  
+        const ctxUser = document.getElementById('userChart').getContext('2d');
+        new Chart(ctxUser, userConfig);
+      })
+      .catch(error => {
+        console.error("Error loading data:", error);
+        document.getElementById('total-users').textContent = "Error fetching data";
+        document.getElementById('total-money').textContent = "Error fetching data";
+      });
+
+      function loadSidebar() {
+        fetch('sidebar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('sidebar-container').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading sidebar:', error));
+    }
+    
+      window.onload = loadSidebar;
+  </script>
+
+</body>
+</html>

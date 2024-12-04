@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You!</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css">
+  <script src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js" nomodule></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      background-color: #721311;
+      height: 100%;
+      padding: 40px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    h1 {
+      color: white;
+      font-size: 2.3rem;
+      font-weight: bold;
+      margin: 0;
+      margin-top: 10px;
+    }
+    h2 {
+      color: white;
+      font-size: 1rem;
+      margin-top: -10px;
+      margin-left: 100px;
+    }
+    .thank-you-screen {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50%;
+      text-align: center;
+      flex-direction: column;
+      margin-top: 100px;
+    }
+    .thank-you-message {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 90%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .thank-you-message p {
+      font-size: 1.2rem;
+      color: #333;
+    }
+    ion-button {
+      --color: #721311;
+      --background: white;
+      margin-top: 20px;
+      width: 100px;
+    }
+    .highlight {
+      font-weight: bold;
+    }
+    .angat {
+      color: #5EBEC4;
+    }
+    .buhay {
+      color: #FF1EBB;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>DAGYAW</h1>
+    <h2><i>Filipino</i></h2>
+
+  <div class="thank-you-screen">
+    <div class="thank-you-message">
+      <h3>Thank you so much for your support!</h3>
+
+      <p>Your donation goes straight to the cause, helping communities get the services they need most.</p>
+      <p>Your kindness makes a real difference, empowering those in need and bringing about positive change. Together, we can make a big impact!</p>
+      <span class="highlight angat">Sa pagtulong sa kapwa,</span> <span class="highlight buhay">sama-sama tayong aangat.</span>
+    </div>
+
+      <ion-button expand="block" onclick="goBack()">Okay</ion-button>
+    </div>
+  </div>
+
+  <script>
+    function goBack() {
+      window.location.href = 'categories.html';
+    }
+  </script>
+</body>
+</html>

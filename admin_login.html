@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css">
+  <script src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js" nomodule></script>
+</head>
+<body>
+    <ion-app>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Admin Login</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      
+      <ion-content class="ion-padding">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Welcome, Admin</ion-card-title>
+            <ion-card-subtitle>Please log in to access the admin page</ion-card-subtitle>
+          </ion-card-header>
+      
+          <ion-card-content>
+            <form id="loginForm">
+              <ion-item>
+                <ion-label style="margin-bottom: 10px;" position="floating">Username</ion-label>
+                <ion-input type="text" id="username" required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label style="margin-bottom: 10px;" position="floating">Password</ion-label>
+                <ion-input type="password" id="password" required></ion-input>
+              </ion-item>
+              <ion-button color="danger" expand="full" type="button" id="loginButton">Login</ion-button>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-content>
+
+    <script>
+      document.getElementById("loginButton").addEventListener("click", function(event) {
+        event.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        if(username === "Admin" && password === "1234") {
+          window.location.href = "admin_dashboard.html";
+        } else {
+          alert("Invalid username or password");
+        }
+      });
+    </script>
+    </ion-app>
+</body>
+</html>
